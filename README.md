@@ -1,23 +1,45 @@
-# Soccer Score Predictor Using Sentiment Analysis
 
-## Setting up Environment
+# Soccer Score Predictor through Sentiment Analysis
 
-This project is built using python and pip, which should both be installed on the target system. You must be running python 3.9 or earlier. To install all project dependencies, run the following command from the root directory of the project:
+Welcome to the cutting-edge Soccer Score Predictor, a pioneering project at the intersection of sports analytics and sentiment analysis. This innovative tool is designed to leverage the power of sentiment analysis, extracting insights from social media data to forecast soccer match outcomes with unprecedented precision.
 
-```
+## Project Overview
+
+At the heart of this project is the ambition to transform how soccer match predictions are made by tapping into the rich vein of social media sentiment. By analyzing the mood and opinions of fans and experts across platforms, we're not just predicting scores; we're unlocking a deeper understanding of the game's dynamics before the whistle blows.
+
+## Environment Setup
+
+To get started, ensure you have Python 3.9 or earlier installed. This project uses Python and pip for managing dependencies. Install all necessary libraries with the following command:
+
+```bash
 pip install -r requirements.txt
 ```
 
-## Executing the Application
+## Running the Predictor
 
-Before you can execute the application, you must setup the environment and install the necessary tools as outlined above. To run the application, execute the following command:
+After setting up your environment:
 
-```
+1. Launch the application:
+
+```bash
 python ./app.py
 ```
 
-Once the application deploys, the url should be printed to the console. Copy and paste the url into your browser to view the frontend and use the application. 
+2. Open the provided URL in your browser to interact with the application.
 
-The user interface has 2 text fields corresponding to the home and away teams for an upcoming soccer match. Due to a limited dataset, the application currently only supports the matches availble [here](https://www.betexplorer.com/football/england/premier-league/). To use the application, find a match you want predicted, enter the home and away teams (ensuring they are spelled correctly), and hit the 'Predict' button. The application will begin calculating its prediction, which will be displayed once it is completed.
+### How to Use
 
-Note, the application performs multiple computationally-expensive calculations, and as such can take several minutes to run. More detailed logs can be viewed on the console during execution.
+1. Navigate to the URL displayed in your console.
+2. Input the names of the home and away teams in the respective fields. Ensure spelling accuracy.
+3. Click 'Predict' to initiate the sentiment analysis-based prediction process.
+
+Note: Due to computational demands, predictions may take a few minutes. The console will display logs for detailed tracking.
+
+## Deep Dive into the Predictor
+
+This application stands out by:
+
+- **Sentiment Analysis:** Harnessing advanced NLP techniques to sift through and analyze social media sentiments, extracting valuable insights into team performance and fan expectations.
+- **Data Management:** Utilizing NoSQL databases for efficient data organization, enabling the handling of large-scale, unstructured social media data.
+- **Innovative ML Models:** Implementing a unique blend of machine learning models, including ensemble methods and sentiment analysis, to predict match outcomes with high accuracy.
+- **User Interface:** Offering an intuitive, user-friendly interface for easy operation and result interpretation.
