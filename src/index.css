@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    scroll-behavior: smooth;
+    font-family: Cambria;
+}
+
+th, td {
+    border: 2px solid #0d406a;
+}
+
+th {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+td {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+tr {
+    height: 50px;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: rgb(223, 226, 232)
+}
+
+.font_logo {
+    font-family: Cambria;
+}
+
+.font_cursive {
+    font-family: cursive;
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+.tooltip {
+    position: relative;
+}
+
+.tooltip-text {
+    position: absolute;
+    left: 20px;
+    top: 30px;
+    text-align: center;
+    color: rgb(2, 31, 65);
+    /* width: 55px; */
+    height: 25px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(2, 31, 65);
+    border-radius: 5px;
+    visibility: hidden;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+}
+
+@layer base{
+    body {
+        @apply bg-[#fcfbfb]
+    }
+
+    h1, h2, h3, h4, h5, h6 { 
+        @apply font-bold
+      }
+    
+      h1 {
+        @apply text-4xl sm:text-5xl md:text-6xl
+      }
+    
+      h2 {
+        @apply text-3xl sm:text-4xl
+      }
+
+      h3 {
+        @apply text-[20px] sm:text-[20px]
+      }
+}

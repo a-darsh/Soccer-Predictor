@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Soccer Predict</title>
+    <link rel="stylesheet" href="..\static\css\styles.css">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"> -->
+</head>
+<body>
+    <nav class="container_nav">
+        <div class='flex_logo'>
+            <h1 class='soccer_h1'>S</h1>
+            <h2 class='soccer_h2'><span class='span_h2'>o</span>ccer</h2>
+        </div>
+        <div class='flex_logo'>
+            <h1 class='predict_h1'>P</h1>
+            <h2 class='predict_h2'>redict</h2>
+        </div>
+    </nav>
+    <div class='main_body'>
+        <div class='sec_body'>
+            <div style="margin-bottom: 100px;">
+                <h2 style="text-align: center; color: #042138e3;">Welcome to Soccer Predict</h2>
+                <p class='welcome_p'>A platform to predict the score of soccer matches</p>
+            </div>
+            <div class='container_form'>
+                <h3 style="color: #042138e3;">Let's Predict</h3>
+                <p class='info_p'>Enter the information about the match you want to predict</p>
+                <div style="margin-top: 25px;">
+                    <form id="predictionForm">
+                        <div class='form_grid'>
+                            <div class='div_flex'>
+                                <label class='cust_lable' for='home_team'>Home Team</label>
+                                <input class='cust_input' type="text" id="home_team" name="home_team"/>
+                            </div>
+                            <div class='div_flex'>
+                                <label class='cust_lable' for='away_team'>Away Team</label>
+                                <input class='cust_input' type="text" id="away_team" name="away_team"/>
+                            </div>
+
+                            <div class="container_button">
+                                <input class="button_style" type="submit" value="Predict">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div style="margin-top: 50px;">
+                <h3 style="color: #042138e3;">Prediction Results:</h3>
+                <div id="result"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkResults(task_id) {
+            fetch('/get-results', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'task_id=' + encodeURIComponent(task_id)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'complete') {
+                    var result = 'Predicted Home Goals: ' + data.data['Predicted Home Goals'] +
+                                ', Predicted Away Goals: ' + data.data['Predicted Away Goals'] +
+                                ', Match Result: ' + data.data['Match Result'];
+                    document.getElementById('result').innerHTML = result;
+                } else if (data.status === 'pending') {
+                    document.getElementById('result').innerHTML = data.message + '...';
+                    setTimeout(() => checkResults(task_id), 2000); // Check again after 2 seconds
+                } else if (data.status === 'error') {
+                    document.getElementById('result').innerHTML = 'Error: ' + data.error;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('result').innerHTML = 'Error occurred';
+            });
+        }
+
+        document.getElementById('predictionForm').onsubmit = function(e) {
+            e.preventDefault();
+            fetch('/start-predict', {
+                method: 'POST',
+                body: new FormData(document.getElementById('predictionForm'))
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').innerHTML = 'Processing...';
+                checkResults(data.task_id);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('result').innerHTML = 'Error occurred';
+            });
+        };
+    </script>
+</body>
+</html>
