@@ -1,4 +1,4 @@
-# CS-6360-Database-Project
+# Soccer Score Predictor Using Sentiment Analysis
 
 ## Setting up Environment
 
